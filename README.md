@@ -12,7 +12,7 @@ MultiHeadDepth and HomoDepth are two models proposed in ours [paper](https://arx
 MultiHeadDepth is suitable for well-rectified input stereo images as input, like [Sceneflow](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html) and [ATD](https://www.projectaria.com/datasets/adt/) datasets.
 
    
-<img src="/imgs_for_repo/mulh.png" height="260">
+<img src="/imgs_for_repo/mulh.png" height="240">
 
 ## HomoDepth
 **HomoDepth** is a multi-task model for depth estimation and homography estimation, in which depth estimation depends on homography estimation. HomoDepthis is suitable for well-rectified input stereo images as input, like [DTU](https://roboimagedata.compute.dtu.dk/?page_id=36) dataset.
@@ -90,4 +90,6 @@ A requirement file is provided for your reference. To install the libraries, run
 `$ conda create --name <env> --file requirement.txt`
 
 ## Dataset
+The models are trained on [Sceneflow](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html), [ATD](https://www.projectaria.com/datasets/adt/), and [DTU](https://roboimagedata.compute.dtu.dk/?page_id=36), respectively.
+
 
