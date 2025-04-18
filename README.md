@@ -90,6 +90,25 @@ A requirement file is provided for your reference. To install the libraries, run
 `$ conda create --name <env> --file requirement.txt`
 
 ## Dataset
-The models are trained on [Sceneflow](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html), [ATD](https://www.projectaria.com/datasets/adt/), and [DTU](https://roboimagedata.compute.dtu.dk/?page_id=36), respectively.
+The models are trained on [Sceneflow](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html), [ATD](https://www.projectaria.com/datasets/adt/), and [DTU](https://roboimagedata.compute.dtu.dk/?page_id=36), respectively. To assist with understanding the dataset folder structure and the input format expected by the model, we provide dataloaders in `utils.py`:
+
+Sceneflow: `SceneFlowDataset`, DTU: `DTU`, ADT: `ADT`
+
+For ADT, we extract the frames from the ADT `.vrs` files. Please check `ADTFromOrg.extract_images` in `ADTdata.py` for more details.
+
+# Inference
+Run `infer.py` to infer a depth map with the model. Here are some examples to run it:
+
+Test the MultiHeadDepth model with Sceneflow: 
+```
+python infer.py -l ..\data\sceneflow\flyingthings3d\frames_cleanpass\TRAIN\A\0000\left\0006.png -r ..\data\sceneflow\flyingthings3d\frames_cleanpass\TRAIN\A\0000\right\0006.png
+```
+
+Test the HomoDepth model with DTU, the output is saved as `.png` file with its real pixel values, and wrote to MyRes/res.png:
+```
+python infer.py -m HomoDepth -d DTU -f png -s MyRes/res.png -l ..\data\DTU\Rectified\scan4\rect_001_1_r5000.png -r ..\data\DTU\Rectified\scan4\rect_002_1_r5000.png 
+```
+
+# Training and Finetuning
 
 
