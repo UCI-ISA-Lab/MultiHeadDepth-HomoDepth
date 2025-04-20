@@ -1,21 +1,21 @@
 ![res](/imgs_for_repo/res.png)
 # MultiHeadDepth-HomoDepth
 
-This repo is the official implementation of [Efficient Depth Estimation for Unstable Stereo Camera Systems on AR Glasses](https://arxiv.org/abs/2411.10013).
+This repo is the official implementation of [Efficient Depth Estimation for Unstable Stereo Camera Systems on AR Glasses](https://arxiv.org/abs/2411.10013), which is accepted by CVPR 2025.
 
 # Introduction
-MultiHeadDepth and HomoDepth are two models proposed in ours [paper](https://arxiv.org/abs/2411.10013), targeting the well-rectified and non-rectified stereo image scenarios, respectively. Both models are designed to be lightweight and hardware-friendly, making them well-suited for AR and edge devices.
+MultiHeadDepth and HomoDepth are two models proposed in our [paper](https://arxiv.org/abs/2411.10013), targeting the well-rectified and non-rectified stereo image scenarios, respectively. Both models are designed to be lightweight and hardware-friendly, making them well-suited for AR and edge devices.
 
 ## MultiHeadDepth
 **MultiHeadDepth** consists of Inverted Residual Blocks, Multi-head Cost Volumes, and Conv2DNormActivation Blocks. The _Multi-head Cost Volume_ is a newly proposed optimization based on traditional cost volumes. Instead of using cosine similarity, we adopt a combination of Layer Normalization and dot-product operations, and further introduce a multi-head mechanism. Compared to conventional cost volumes, the Multi-head Cost Volume offers improved perception capabilities and reduced inference latency.
 
-MultiHeadDepth is suitable for well-rectified input stereo images as input, like [Sceneflow](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html) and [ATD](https://www.projectaria.com/datasets/adt/) datasets.
+MultiHeadDepth is suitable for well-rectified stereo images as input, like [Sceneflow](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html) and [ATD](https://www.projectaria.com/datasets/adt/) datasets.
 
    
 <img src="/imgs_for_repo/mulh.png" height="240">
 
 ## HomoDepth
-**HomoDepth** is a multi-task model for depth estimation and homography estimation, in which depth estimation depends on homography estimation. HomoDepthis is suitable for well-rectified input stereo images as input, like [DTU](https://roboimagedata.compute.dtu.dk/?page_id=36) dataset.
+**HomoDepth** is a multi-task model for depth estimation and homography estimation, in which depth estimation depends on homography estimation. HomoDepthis is suitable for non-rectified stereo images as input, like [DTU](https://roboimagedata.compute.dtu.dk/?page_id=36) dataset.
 
 ![homo](/imgs_for_repo/homo_stru.png)
 
@@ -85,7 +85,7 @@ Please check Table 4. in the paper for the explanation of the notations in this 
 ## Libraries
 **Main:** python=3.10, numpy=1.26.4, pytorch=2.4.1=cuda118, scikit-image=0.24.0, imageio=2.37
 
-A requirement file is provided for your reference. To install the libraries, run
+A requirement file is provided for your reference. To creat the envoriment and install the libraries, run
 
 `$ conda create --name <env> --file requirement.txt`
 
@@ -109,6 +109,30 @@ Test the HomoDepth model with DTU, the output is saved as `.png` file with its r
 python infer.py -m HomoDepth -d DTU -f png -s MyRes/res.png -l ..\data\DTU\Rectified\scan4\rect_001_1_r5000.png -r ..\data\DTU\Rectified\scan4\rect_002_1_r5000.png 
 ```
 
-# Training and Finetuning
+# Training and Fine-tuning
+We use Adam optimizer without schedulers. In the early stages of model training, the base learning rate (LR) is 1e-4, and we select the best epoch. Afterward, we fine-tune the model with an LR of 4e-4 and select the optimal weights. The batch size depends on the memory of GPU. We set the batch size as 10, based on the GPU memory.
 
+We provide 'train.py' for training and fine-tuning. Here are some examples to run it:
 
+Train the MultiHeadDepth with sceneflow:
+```
+python train.py -p "../data/sceneflow/"
+```
+
+Train the HomoDepth with DTU dataset, the number of total epochs is 1000, in which the number of validation epochs is 200. The batch size is 20, and the sample rate of the dataset is 5.
+```
+ python train.py -m HomoDepth -d DTU -p "../data/DTU/" --total_epochs 1000 --val_epochs 200 --batch_size 20 --sample_rate 5
+```
+
+Based on the weights trained on ADT dataset, fine-tune the MultiHeadDepth with Middlebury dataset, and save the fine-tuned model weights in the folder `finetune`.
+```
+python train.py -d Middlebury -c .\ckpt\MulH_ADT.pt -p "../data/Middlebury/" -s finetune
+```
+
+# License
+**TBD**
+
+# Contact Information
+For help or issues using MultiHeadDepth and HomoDepth, please submit a GitHub issue.
+
+For other communications related to our work, please contact Yongfan Liu (`yongfal@uci.edu`) and Hyoukjun Kwon (`hyoukjun.kwon@uci.edu`).
