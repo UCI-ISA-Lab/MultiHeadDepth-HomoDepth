@@ -1,3 +1,7 @@
+# Download Trained Model Weights
+
+We provide 4 weights:
+
 MultiHeadDpeth trained with Sceneflow: Mulh_SF.pt
 
 MultiHeadDpeth trained with DTU: Mulh_DTU.pt
