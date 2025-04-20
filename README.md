@@ -112,7 +112,7 @@ python infer.py -m HomoDepth -d DTU -f png -s MyRes/res.png -l ..\data\DTU\Recti
 ```
 
 # Training and Fine-tuning
-We use Adam optimizer without schedulers. In the early stages of model training, the base learning rate (LR) is 1e-4, and we select the best epoch. Afterward, we fine-tune the model with an LR of 4e-4 and select the optimal weights. The batch size depends on the memory of GPU. We set the batch size as 10, based on the GPU memory.
+We use Adam optimizer without schedulers. In the early stages of model training, the base learning rate is `1e-4`, and we select the best epoch. Afterward, we fine-tune the model with an learning rate of `4e-4` and select the optimal weights. The batch size depends on the memory of GPU. We set the batch size as 10, based on the GPU memory.
 
 ## MultiHeadDepth
 We provide `train_mulh.py` for training and fine-tuning with **MultiHeadDepth**. Here are some examples to run it:
