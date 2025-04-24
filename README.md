@@ -145,9 +145,6 @@ Based on the weights trained on DTU dataset, fine-tune the model further with DT
 python3 train_homod.py -p ../data/DTU/ -c ./ckpt/HomoDepth_DTU.pt -sr 5 -b 16 -lr 4e-4 -lrv 1e-4
 ```
 
-# License
-**TBD**
-
 # Contact Information
 For help or issues using MultiHeadDepth and HomoDepth, please submit a GitHub issue.
 
