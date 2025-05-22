@@ -33,7 +33,7 @@ For better convergence, we made an update about the loss function of **HomoDepth
 |[DTU](https://roboimagedata.compute.dtu.dk/?page_id=36)| 0.147     | 0.148    | 0.339  | 0.122   | **0.101**   |
 
 ## Main Features for MultiHeadDepth and Other SOTA Models
-<img src="/imgs_for_repo/scatter_plot1.png" height="420">
+<img src="/imgs_for_repo/scatter_plot1.png" height="430">
 
 ## HomoDepth Performance for Different Pipelines
 |                                      | Argos | PreP+ Argos | PreP+ MultiheadDepth | **HomoDepth** |
