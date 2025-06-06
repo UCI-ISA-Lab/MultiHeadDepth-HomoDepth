@@ -148,11 +148,13 @@ python3 train_homod.py -p ../data/DTU/ -c ./ckpt/HomoDepth_DTU.pt -sr 5 -b 16 -l
 ```
 # Citation
 ```
-@inproceedings{liu2025efficientdepthestimationunstable,
-      title={Efficient Depth Estimation for Unstable Stereo Camera Systems on AR Glasses}, 
-      author={Yongfan Liu and Hyoukjun Kwon},
-      year={2025},
-      booktitle={CVPR},
+@InProceedings{Liu_2025_CVPR,
+    author    = {Liu, Yongfan and Kwon, Hyoukjun},
+    title     = {Efficient Depth Estimation for Unstable Stereo Camera Systems on AR Glasses},
+    booktitle = {Proceedings of the Computer Vision and Pattern Recognition Conference (CVPR)},
+    month     = {June},
+    year      = {2025},
+    pages     = {6252-6261}
 }
 ```
 
