@@ -1,4 +1,3 @@
-
 # [CVPR 2025] MultiHeadDepth-HomoDepth
 
 This repo is the official implementation of [Efficient Depth Estimation for Unstable Stereo Camera Systems on AR Glasses](https://arxiv.org/abs/2411.10013), which is accepted by CVPR 2025.
