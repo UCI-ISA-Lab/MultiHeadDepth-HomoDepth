@@ -1,11 +1,9 @@
-MultiHeadDepth-HomoDepth is the official implementation of our CVPR 2025 paper:
-"Efficient Depth Estimation for Unstable Stereo Camera Systems on AR Glasses".
 
 # [CVPR 2025] MultiHeadDepth-HomoDepth
 
-This repo implements [our paper](https://arxiv.org/abs/2411.10013), accepted by CVPR 2025.
+This repo is the official implementation of [Efficient Depth Estimation for Unstable Stereo Camera Systems on AR Glasses](https://arxiv.org/abs/2411.10013), which is accepted by CVPR 2025.
 
-![res](/imgs_for_repo/res.png)
+
 
 # Introduction
 MultiHeadDepth and HomoDepth are two models proposed in our [paper](https://arxiv.org/abs/2411.10013), targeting the well-rectified and non-rectified stereo image scenarios, respectively. Both models are designed to be lightweight and hardware-friendly, making them well-suited for AR and edge devices.
